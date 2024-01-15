@@ -1,0 +1,7 @@
+{
+  "name": "spot-memory",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}

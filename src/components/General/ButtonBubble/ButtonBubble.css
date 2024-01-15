@@ -1,0 +1,44 @@
+.ButtonBubble {
+    margin: 1rem;
+}
+
+.ButtonBubble,
+.btn-wrapper {
+    display: grid;
+    grid-template-columns: repeat(var(--column-count), 1fr);
+    /* grid-template-rows: repeat(2, 1fr); */
+}
+
+.btn-wrapper {
+    grid-column: span var(--column-count);
+    background-color: #30312C;
+    border-radius: 25px;
+    /* padding: 0.8rem 0; */
+}
+
+
+.label {
+    text-align: center;
+    margin: 0 0 0.5rem 0;
+}
+
+.button {
+    position: relative;
+    text-align: center;
+}
+
+.button:not(:first-child)::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top:10%;
+    height: 80%;
+    width: 2px;
+    background-color: #fff;
+}
+
+.btn-icon{
+    height: 5rem;
+    width: 5rem;
+}
