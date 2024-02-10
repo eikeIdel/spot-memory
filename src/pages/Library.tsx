@@ -1,10 +1,6 @@
-import {
-    IonContent,
-    IonHeader,
-    IonPage,
-    IonTitle,
-    IonToolbar,
-  } from '@ionic/react';
+import {IonContent,IonHeader,IonPage,IonTitle,IonToolbar} from '@ionic/react';
+//Components
+import LibraryControls from '../components/Library/LibraryControls/LibraryControls';
 
 interface LibraryProps {}
 
@@ -18,7 +14,7 @@ const Library: React.FC<LibraryProps> = () => {
           </IonToolbar>
         </IonHeader>
         <IonContent fullscreen>
-          <h1>Hello World</h1>
+        <LibraryControls/>
         </IonContent>
       </IonPage>
     </>

@@ -1,12 +1,17 @@
+//Iionic Components
 import {IonContent,IonHeader,IonPage,IonTitle,IonToolbar} from '@ionic/react';
-import { cameraOutline } from 'ionicons/icons';
+//Ionicons
+import { cameraOutline,listOutline } from 'ionicons/icons';
+//Compoments
 import ButtonBubble from '../components/General/ButtonBubble/ButtonBubble';
-import './Home.css';
+import RecentSpots from '../components/Home/RecentSpots';
+//Styles
+import './Home.css'; 
 
 const Home: React.FC = () => {
   const buttons = [
     { label: 'Add New Spot', icon: cameraOutline, route: '/openCam' },
-    { label: 'Open Library', icon: 'Camera', route: '/library' },
+    { label: 'Open Library', icon: listOutline, route: '/library' },
   ];
   return (
     <IonPage>
@@ -16,6 +21,7 @@ const Home: React.FC = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+        <RecentSpots />
         <ButtonBubble buttons={buttons} />
       </IonContent>
     </IonPage>

@@ -1,0 +1,53 @@
+.LibrayControls {
+    margin: 1rem;
+
+    .top-controls {
+        display: flex;
+        justify-content: space-between;
+
+        ion-icon {
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .list-style {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            position: relative;
+
+            ion-icon {
+                color: var(--ion-color-medium);
+
+                &.selected {
+                    color: var(--ion-color-primary);
+
+                    &:nth-child(2) {
+                        font-size: 1.5rem;
+                    }
+                }
+            }
+
+        }
+
+    }
+
+    .sort-controls {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .date{
+            .label{
+                margin: 0 0.2rem 0 0;
+            }
+
+            .SortOrderArrows{
+            
+
+                svg{
+                    height: 1rem;           
+            }
+        }
+    }
+}

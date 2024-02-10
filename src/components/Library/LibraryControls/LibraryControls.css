@@ -1,0 +1,51 @@
+.LibrayControls {
+  margin: 1rem;
+}
+.LibrayControls .top-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.LibrayControls .top-controls ion-icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+.LibrayControls .top-controls .list-style {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.6rem;
+  position: relative;
+}
+.LibrayControls .top-controls .list-style ion-icon {
+  color: var(--ion-color-medium);
+}
+.LibrayControls .top-controls .list-style ion-icon.selected {
+  color: var(--ion-color-primary);
+}
+.LibrayControls .top-controls .list-style ion-icon.selected:nth-child(2) {
+  font-size: 1.5rem;
+}
+.LibrayControls .sort-controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.LibrayControls .sort-controls .date .label {
+  margin: 0 0.2rem 0 0;
+}
+.LibrayControls .sort-controls .date .SortOrderArrows svg {
+  height: 1rem;
+}
+.LibrayControls .sort-controls .date .SortOrderArrows svg path {
+  height: 2rem;
+}/*# sourceMappingURL=LibraryControls.css.map */

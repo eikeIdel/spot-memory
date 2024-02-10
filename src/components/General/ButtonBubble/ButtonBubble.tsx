@@ -20,7 +20,7 @@ const ButtonBubble: React.FC<ButtonBubbleProps> = ({ buttons }) => {
       <div className='btn-wrapper'>
         {buttons.map((button,index) => (
           <Link to={button.route} className="button" aria-label={button.label} key={index}>
-            <IonIcon class="btn-icon" icon={button.icon} aria-hidden="true" ></IonIcon>
+            <IonIcon className="btn-icon" icon={button.icon} aria-hidden="true" ></IonIcon>
             </Link>
         ))}
       </div>

@@ -1,0 +1,21 @@
+.RecentSpots{
+    margin:1rem;
+}
+
+.RecentSpots .label{
+    text-align: left;
+    margin-left: 3.6rem;
+}
+
+.RecentSpots .btn-wrapper {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    padding: 0.5rem 0;
+}
+
+.RecentSpots .prev-img{
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+}
