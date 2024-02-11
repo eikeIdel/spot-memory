@@ -14,7 +14,7 @@ const RecentSpots: React.FC = () => {
         <Link to='' className='button' aria-label='Recent Spot 1'>
           <IonImg
             className='prev-img'
-            src='/src/tempImages/img1.jpg'
+            src='/src/placeholder/img1.jpg'
             alt='Recent Spot 1'
           />
         </Link>
@@ -22,7 +22,7 @@ const RecentSpots: React.FC = () => {
         <Link to='' className='button' aria-label='Recent Spot 2'>
           <IonImg
             className='prev-img'
-            src='/src/tempImages/img2.jpg'
+            src='/src/placeholder/img2.jpg'
             alt='Recent Spot 2'
           />
         </Link>
@@ -30,7 +30,7 @@ const RecentSpots: React.FC = () => {
         <Link to='' className='button' aria-label='Recent Spot 3'>
           <IonImg
             className='prev-img'
-            src='/src/tempImages/img3.jpg'
+            src='/src/placeholder/img3.jpg'
             alt='Recent Spot 3'
           />
         </Link>

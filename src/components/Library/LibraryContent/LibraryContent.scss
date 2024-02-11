@@ -1,0 +1,23 @@
+.LibraryContent {
+    margin: 1rem;
+
+    .divider{
+        margin: 1rem 0;
+        height: 1px;
+        background-color: var(--ion-color-light);
+    }
+
+    .ContentGallery {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1.2rem;
+
+
+        ion-img {
+            width: 11rem;
+            height: 11rem;
+            object-fit: cover
+        }
+    }
+}

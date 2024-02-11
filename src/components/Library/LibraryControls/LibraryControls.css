@@ -14,38 +14,51 @@
   cursor: pointer;
 }
 .LibrayControls .top-controls .list-style {
+  --flex-gap: 0.6rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  gap: 0.6rem;
+  gap: var(--flex-gap);
   position: relative;
 }
-.LibrayControls .top-controls .list-style ion-icon {
-  color: var(--ion-color-medium);
+.LibrayControls .top-controls .list-style .icon {
+  width: 2rem;
+  height: 2rem;
 }
-.LibrayControls .top-controls .list-style ion-icon.selected {
-  color: var(--ion-color-primary);
+.LibrayControls .top-controls .list-style .icon:nth-child(2) {
+  padding: 0.1rem;
+  margin-top: -0.1rem;
 }
-.LibrayControls .top-controls .list-style ion-icon.selected:nth-child(2) {
-  font-size: 1.5rem;
+.LibrayControls .top-controls .list-style::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  height: 80%;
+  width: 1px;
+  background-color: #fff;
 }
 .LibrayControls .sort-controls {
+  --font-size: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 1rem;
+  font-size: var(--font-size);
 }
-.LibrayControls .sort-controls .date .label {
+.LibrayControls .sort-controls .sort-group .label {
   margin: 0 0.2rem 0 0;
 }
-.LibrayControls .sort-controls .date .SortOrderArrows svg {
-  height: 1rem;
-}
-.LibrayControls .sort-controls .date .SortOrderArrows svg path {
-  height: 2rem;
+.LibrayControls .sort-controls .sort-group .SortOrderArrows svg {
+  height: var(--font-size);
 }/*# sourceMappingURL=LibraryControls.css.map */

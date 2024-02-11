@@ -11,42 +11,53 @@
         }
 
         .list-style {
+            --flex-gap: 0.6rem;
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: var(--flex-gap);
             position: relative;
 
-            ion-icon {
-                color: var(--ion-color-medium);
-
-                &.selected {
-                    color: var(--ion-color-primary);
-
-                    &:nth-child(2) {
-                        font-size: 1.5rem;
-                    }
+            .icon {
+                width: 2rem;
+                height:2rem;
+            
+              &:nth-child(2) {
+                    padding:0.1rem;
+                    margin-top:-0.1rem;
                 }
+
             }
 
+            &::before {
+                content: "";
+                display: inline-block;
+                position: absolute;
+                left: calc(50%);
+                top: 10%;
+                height: 80%;
+                width: 1px;
+                background-color: #fff;
+            }
         }
-
     }
 
     .sort-controls {
+        --font-size: 1rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        padding-top: 1rem;
+        font-size: var(--font-size);
 
-        .date{
-            .label{
+        .sort-group {
+            .label {
                 margin: 0 0.2rem 0 0;
             }
 
-            .SortOrderArrows{
-            
-
-                svg{
-                    height: 1rem;           
+            .SortOrderArrows {
+                svg {
+                    height: var(--font-size);
+                }
             }
         }
     }

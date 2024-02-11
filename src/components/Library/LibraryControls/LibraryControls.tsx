@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 //IonicComponents
-import { IonIcon, IonModal } from '@ionic/react';
+import { IonIcon, IonModal, IonItemDivider } from '@ionic/react';
 //Ionicons
 import {
   cameraOutline,
@@ -12,23 +12,37 @@ import {
 } from 'ionicons/icons';
 //Components
 import FilterSettings from '../FilterSettings/FilterSettings';
-import SortOrderArrows from '../../General/SortOrderArrows/SortOrderArrows';
+import SortOrderArrows from '../../General/Icons/SortOrderArrows';
+import ListViewIcon from '../../General/Icons/ListViewIcon';
+import GalleryViewIcon from '../../General/Icons/GalleryViewIcon';
 //Styles
 import './LibraryControls.css';
 
-const LibraryControls: React.FC = () => {
-  type SortBy = {
-    type: 'date' | 'artist' | 'location'; // replace 'otherType1', 'otherType2' with your actual types
+interface props {
+  listStyle: string;
+  setListStyle: React.Dispatch<React.SetStateAction<string>>;
+  sortBy: {
+    type: 'date' | 'artist' | 'location';
     order: 'asc' | 'desc';
   };
-  type ListStyle = 'list' | 'gallery';
+  setSortBy: React.Dispatch<
+    React.SetStateAction<{
+      type: 'date' | 'artist' | 'location';
+      order: 'asc' | 'desc';
+    }>
+  >;
+}
 
+const LibraryControls: React.FC<props> = ({
+  listStyle,
+  setListStyle,
+  sortBy,
+  setSortBy,
+}) => {
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
-  const [listStyle, setListStyle] = useState<ListStyle>('list');
-  const [sortBy, setSortBy] = useState<SortBy>({ type: 'date', order: 'desc' });
 
-function handleSortClick(type: 'date' | 'artist' | 'location') {
-  console.log('triggered')
+  function handleSortClick(type: 'date' | 'artist' | 'location') {
+    console.log(sortBy.type === type, type, sortBy.type, sortBy.order);
     if (sortBy.type === type) {
       if (sortBy.order === 'asc') {
         setSortBy({ type: type, order: 'desc' });
@@ -38,7 +52,7 @@ function handleSortClick(type: 'date' | 'artist' | 'location') {
     } else {
       setSortBy({ type: type, order: 'desc' });
     }
-}
+  }
 
   return (
     <div className='LibrayControls'>
@@ -49,19 +63,15 @@ function handleSortClick(type: 'date' | 'artist' | 'location') {
           </Link>
         </div>
         <div className='list-style'>
-          <IonIcon
-            icon={listOutline}
-            className={`${listStyle == 'list' && 'selected'}`}
-            onClick={() => {
-              setListStyle('list');
-            }}
+          <ListViewIcon
+            selected={listStyle == 'list' ? true : false}
+            setState={setListStyle}
+            stateValue='list'
           />
-          <IonIcon
-            icon={gridOutline}
-            className={`${listStyle == 'gallery' && 'selected'}`}
-            onClick={() => {
-              setListStyle('gallery');
-            }}
+          <GalleryViewIcon
+            selected={listStyle == 'gallery' ? true : false}
+            setState={setListStyle}
+            stateValue='gallery'
           />
         </div>
         <div className='filter-btn'>
@@ -73,11 +83,47 @@ function handleSortClick(type: 'date' | 'artist' | 'location') {
       </div>
       <div className='sort-controls'>
         <div>Sort by:</div>
-        <div className={`date ${sortBy.type == 'date' && 'selected'}`} onClick={() => { handleSortClick('date') }}>
+
+        <div
+          className={`sort-group date ${sortBy.type == 'date' && 'selected'}`}
+          onClick={() => {
+            handleSortClick('date');
+          }}
+        >
           <span className='label'>Spot-Date</span>
           <SortOrderArrows
             sortOrder={sortBy.order}
             selected={sortBy.type == 'date' ? true : false}
+          />
+        </div>
+
+        <div
+          className={`sort-group artist ${
+            sortBy.type == 'artist' && 'selected'
+          }`}
+          onClick={() => {
+            handleSortClick('artist');
+          }}
+        >
+          <span className='label'>Artist/Crew</span>
+          <SortOrderArrows
+            sortOrder={sortBy.order}
+            selected={sortBy.type == 'artist' ? true : false}
+          />
+        </div>
+
+        <div
+          className={`sort-group location ${
+            sortBy.type == 'location' && 'selected'
+          }`}
+          onClick={() => {
+            handleSortClick('location');
+          }}
+        >
+          <span className='label'>Location</span>
+          <SortOrderArrows
+            sortOrder={sortBy.order}
+            selected={sortBy.type == 'location' ? true : false}
           />
         </div>
       </div>
