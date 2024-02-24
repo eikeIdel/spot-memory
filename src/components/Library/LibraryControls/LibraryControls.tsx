@@ -42,7 +42,6 @@ const LibraryControls: React.FC<props> = ({
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
 
   function handleSortClick(type: 'date' | 'artist' | 'location') {
-    console.log(sortBy.type === type, type, sortBy.type, sortBy.order);
     if (sortBy.type === type) {
       if (sortBy.order === 'asc') {
         setSortBy({ type: type, order: 'desc' });
@@ -127,6 +126,7 @@ const LibraryControls: React.FC<props> = ({
           />
         </div>
       </div>
+      <div className='divider-horizontal'></div>
     </div>
   );
 };

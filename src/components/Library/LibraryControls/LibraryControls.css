@@ -1,5 +1,6 @@
 .LibrayControls {
-  margin: 1rem;
+  padding: 1rem;
+  background-color: #121212;
 }
 .LibrayControls .top-controls {
   display: -webkit-box;
@@ -61,4 +62,7 @@
 }
 .LibrayControls .sort-controls .sort-group .SortOrderArrows svg {
   height: var(--font-size);
+}
+.LibrayControls .divider {
+  margin: 1rem 0 0 0;
 }/*# sourceMappingURL=LibraryControls.css.map */

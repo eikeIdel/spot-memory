@@ -1,5 +1,5 @@
 //React
-import {useEffect} from 'react';
+import { useEffect } from 'react';
 //Styles
 import './LibraryContent.css';
 //Components
@@ -7,27 +7,24 @@ import ContentList from './ContentList';
 import ContentGallery from './ContentGallery';
 
 interface props {
-    listStyle: string;
-    sortBy: {
-      type: 'date' | 'artist' | 'location';
-      order: 'asc' | 'desc';
-    };
-    spotData:{
-        artist: string;
-        spotDateTimeStamp: string;
-        location: string;
-        image: string;
-      }[];
+  listStyle: string;
+  spotData: {
+    artist: string;
+    spotDateTimeStamp: number;
+    location: string;
+    image: string;
+  }[];
 }
 
-const LibraryContent: React.FC<props> = ({listStyle,sortBy,spotData}) => {
-
-return (
-<div className="LibraryContent">
-    <div className="divider"></div>
-      {listStyle === 'list' ? <ContentList sortBy={sortBy} spotData={spotData}/> : <ContentGallery sortBy={sortBy} spotData={spotData}/>}
-    <div className="divider"></div>
+const LibraryContent: React.FC<props> = ({ listStyle, spotData }) => {
+  return (
+    <div className='LibraryContent'>
+      {listStyle === 'list' ? (
+        <ContentList spotData={spotData} />
+      ) : (
+        <ContentGallery spotData={spotData} />
+      )}
     </div>
-)
-}
+  );
+};
 export default LibraryContent;

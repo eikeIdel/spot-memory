@@ -2,28 +2,38 @@
 import { useEffect } from 'react';
 //IonicComponents
 import { IonImg, IonThumbnail } from '@ionic/react';
+//hooks
+import useDateConverter from '../../../hooks/useDateConverter';
+
 interface props {
-  sortBy: {
-    type: 'date' | 'artist' | 'location';
-    order: 'asc' | 'desc';
-  };
   spotData: {
     artist: string;
-    spotDateTimeStamp: string;
+    spotDateTimeStamp: number;
     location: string;
     image: string;
   }[];
 }
 
-const ContentList: React.FC<props> = ({ sortBy, spotData }) => {
-  useEffect(() => {
-    console.log('ContentList useEffect');
-  }, [sortBy]);
+const ContentList: React.FC<props> = ({ spotData }) => {
+  function formatDate(timestamp: number) {
+    const date = useDateConverter(timestamp, 'dd.mm.yyyy',true);
+    return date; 
+  }
+
   return (
     <div className='ContentList'>
-      <IonThumbnail>
-        <IonImg src={spotData[0].image} />
-      </IonThumbnail>
+      {spotData?.map((spot, index) => (
+        <div className='content-item' key={index}>
+          <IonImg src={spot.image} />
+
+          <div className='divider-vertical'></div>
+          <ul className='spot-details'>
+            <li className='artist-name'>{spot.artist}</li>
+            <li className='date'>{formatDate(spot.spotDateTimeStamp)}</li>
+            <li className='location'>{spot.location}</li>
+          </ul>
+        </div>
+      ))}
     </div>
   );
 };

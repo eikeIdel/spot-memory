@@ -1,6 +1,7 @@
 .LibrayControls {
-    margin: 1rem;
-
+    padding: 1rem;
+    background-color: #121212;
+    
     .top-controls {
         display: flex;
         justify-content: space-between;
@@ -60,5 +61,9 @@
                 }
             }
         }
+    }
+
+    .divider{
+        margin: 1rem 0 0 0;
     }
 }
