@@ -18,19 +18,34 @@ import GalleryViewIcon from '../../General/Icons/GalleryViewIcon';
 //Styles
 import './LibraryControls.css';
 
+interface SelectedFilterOptions {
+  artist: string | undefined;
+  date: string | undefined;
+  location: string | undefined;
+}
+
 interface props {
   listStyle: string;
   setListStyle: React.Dispatch<React.SetStateAction<string>>;
   sortBy: {
     type: 'date' | 'artist' | 'location';
     order: 'asc' | 'desc';
-  };
+  },
   setSortBy: React.Dispatch<
     React.SetStateAction<{
       type: 'date' | 'artist' | 'location';
       order: 'asc' | 'desc';
     }>
-  >;
+  >,
+  filterOptions: {
+    artist: string[];
+    date: string[];
+    location: string[];
+  },
+  selectedFilterOptions:SelectedFilterOptions,
+  setSelectedFilterOptions: React.Dispatch<
+    React.SetStateAction<SelectedFilterOptions>
+  >,
 }
 
 const LibraryControls: React.FC<props> = ({
@@ -38,6 +53,9 @@ const LibraryControls: React.FC<props> = ({
   setListStyle,
   sortBy,
   setSortBy,
+  filterOptions,
+  selectedFilterOptions,
+  setSelectedFilterOptions,
 }) => {
   const [filterIsOpen, setFilterIsOpen] = useState<boolean>(false);
 
@@ -77,7 +95,12 @@ const LibraryControls: React.FC<props> = ({
           <IonIcon icon={filterOutline} onClick={() => setFilterIsOpen(true)} />
         </div>
         <IonModal isOpen={filterIsOpen}>
-          <FilterSettings setFilterIsOpen={setFilterIsOpen} />
+          <FilterSettings
+            setFilterIsOpen={setFilterIsOpen}
+            filterOptions={filterOptions}
+            setSelectedFilterOptions={setSelectedFilterOptions}
+            selectedFilterOptions={selectedFilterOptions}
+          />
         </IonModal>
       </div>
       <div className='sort-controls'>

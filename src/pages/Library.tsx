@@ -13,6 +13,18 @@ import {
 import LibraryControls from '../components/Library/LibraryControls/LibraryControls';
 import LibraryContent from '../components/Library/LibraryContent/LibraryContent';
 
+interface FilterOptions {
+  artist: string[];
+  date: string[];
+  location: string[];
+}
+
+interface SelectedFilterOptions {
+  artist: string | undefined;
+  date: string | undefined;
+  location: string | undefined;
+}
+
 const Library: React.FC = () => {
   type SortBy = {
     type: 'date' | 'artist' | 'location'; // replace 'otherType1', 'otherType2' with your actual types
@@ -86,24 +98,74 @@ const Library: React.FC = () => {
     ...spotDataP,
     ...spotDataP,
   ]);
-
+  const [filterOptions, setFilterOptions] = useState<FilterOptions>({artist: [],date: [],location: [],});
+  const [selectedFilterOptions,setSelectedFilterOptions] = useState<SelectedFilterOptions>({artist: undefined, date: undefined, location: undefined});
+  
   useEffect(() => {
     const sortKey: 'spotDateTimeStamp' | 'artist' | 'location' =
       sortBy.type == 'date' ? 'spotDateTimeStamp' : sortBy.type;
+    setSpotData(sortSpotData(sortKey,sortBy.order));
+    if (
+      filterOptions.artist.length === 0 ||
+      filterOptions.date.length === 0 ||
+      filterOptions.location.length === 0
+    ) {
+      createFilterOptions();
+    }
+  }, [sortBy]);
 
+  function sortSpotData(sortKey: 'spotDateTimeStamp' | 'artist' | 'location',sortOrder:string='asc'): any[] {
     const sortedSpotData = [...spotData].sort((a: any, b: any) => {
-      const aValue = String(a[sortKey]);
-      const bValue = String(b[sortKey]);
-    
-      if (sortBy.order === 'asc') {
+      const aValue = sortKey === 'spotDateTimeStamp' ? String(a[sortKey]) : String(a[sortKey])[0];
+      const bValue = sortKey === 'spotDateTimeStamp' ? String(b[sortKey]) : String(b[sortKey])[0];
+
+      if (sortOrder === 'asc') {
         return aValue.localeCompare(bValue);
       } else {
         return bValue.localeCompare(aValue);
       }
     });
-    setSpotData(sortedSpotData);
-    console.log(sortedSpotData);
-  }, [sortBy]);
+    return sortedSpotData;
+  }
+
+  function createFilterOptions(): void {
+    const sortKeys = ['artist', 'spotDateTimeStamp', 'location'];
+    const artistOptions: string[] = [];
+    const dateOptions: string[] = [];
+    const locationOptions: string[] = [];
+
+    sortKeys.forEach((sortKey: any) => {
+      if (sortKey == 'artist') {
+        sortSpotData(sortKey).forEach((spot: any) => {
+          if (!artistOptions.includes(spot.artist)) {
+            artistOptions.push(spot.artist);
+          }
+        });
+      }
+
+      if (sortKey == 'spotDateTimeStamp') {
+        sortSpotData(sortKey).forEach((spot: any) => {
+          if (!dateOptions.includes(spot.spotDateTimeStamp)) {
+            dateOptions.push(spot.spotDateTimeStamp);
+          }
+        });
+      }
+
+      if (sortKey == 'location') {
+        sortSpotData(sortKey).forEach((spot: any) => {
+          if (!locationOptions.includes(spot.location)) {
+            locationOptions.push(spot.location);
+          }
+        });
+      }
+    });
+
+    setFilterOptions({
+      artist: artistOptions,
+      date: dateOptions,
+      location: locationOptions,
+    });
+  }
 
   return (
     <>
@@ -114,6 +176,9 @@ const Library: React.FC = () => {
             setListStyle={setListStyle}
             sortBy={sortBy}
             setSortBy={setSortBy}
+            filterOptions={filterOptions}
+            selectedFilterOptions={selectedFilterOptions}
+            setSelectedFilterOptions={setSelectedFilterOptions}
           />
         </IonHeader>
         <IonContent fullscreen>

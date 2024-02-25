@@ -1,0 +1,17 @@
+.FilterSettings {
+    --font-size: 2rem;
+    padding: 0 1rem;
+
+    ion-title {
+        font-size: var(--font-size);
+    }
+
+    &>div {
+        padding:0 2rem;
+        
+        h2 {
+            font-size: var(--font-size);
+            padding: 2rem 0 0 2rem;
+        }
+    }
+}
